@@ -8,6 +8,7 @@ const Hero = ({events}) => {
     // const [events, setEventss] = useState({});
     return(
         <div>
+            {/* 
             <Carousel>{
                 events?.map((event) =>{
                 return(
@@ -31,6 +32,7 @@ const Hero = ({events}) => {
                 })
             }
             </Carousel>
+             */}
         </div>
     )
 }

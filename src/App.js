@@ -6,10 +6,20 @@ import Layout from './components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home'
 import Header from './components/header/Header'
+import HomePage from './components/home/HomePage';
+import Hero from './components/hero/Hero.js';
+import CreateEvent from './components/home/CreateEvent';
+import AttendEvent from './components/home/AttendEvent';
+import Registry from './components/Registry.js';
 
 function App() {
   
-  const [events, setEvents]= useState();
+  const [events, setEvents]= useState([
+    {
+      title: 'Sample Wedding'
+      // poster: 
+    },
+  ]);
     
   const getEvents = async () =>{
     try{
@@ -25,13 +35,20 @@ function App() {
 
   useEffect(() => {
     getEvents();
-  }, [])
+  }, []);
+
   return (
     <div className="App">
+      <Hero events={events} />
       <Header/>
       <Routes>
-        <Route path ="/" element={<Layout/>}>
+        {/* <Route path ="/" element={<Layout/>}> */}
+        <Route path="/" element={<HomePage/>} >
           <Route path="/" element={<Home events={events} />} ></Route>
+          <Route path="/" element={<HomePage/>}></Route>
+          <Route path="/create-event" element={<CreateEvent  events={events} setEvents={setEvents}/>} />
+          <Route path="/attend-event" element={<AttendEvent events={events}/>} />
+          <Route path="/registry" element={<Registry />} />
         </Route>
       </Routes>
     </div>
